@@ -1,0 +1,26 @@
+body {
+  text-align: center;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.link-box {
+  background-color: #02b3e4;
+  border-radius: 20px;
+  width: 30%;
+  min-width: 250px;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+.link-box > a {
+  color: black;
+  font-weight: bold;
+  font-size: xx-large;
+  text-decoration: none;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "mwebshare",
+  "version": "1.0.0",
+  "description": " TypeScript/Node.js implemention of http share",
+  "scripts": {
+  },
+  "author": "Noor",
+  "license": "MIT"
+}
