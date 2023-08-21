@@ -1,28 +1,22 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import multer from "multer";
-import cors from "cors"; 
-import path from "path";
-import process from "process";
+import cors from "cors";
 import utils from "./utils";
 
 const app = express();
 app.use(
   cors({
     origin: ["http://localhost:5173", "http://192.168.1.105:5173"],
-  })
+  }),
 );
 const upload = multer({ dest: "../Uploaded" });
-app.get("/", (_req: Request, res: Response) => {
-  // use path.resolve to convert the relative path to absolute path & pass it to sendfile
-  res.sendFile(path.resolve("./build/static/html/index.html"));
-});
 
-app.get("/api/geturls", async (_req: Request, res: Response) => {
+app.get("/api/geturls", async (_req, res) => {
   const result = await utils.getFiles();
   res.json(result);
 });
 
-app.get("/api/download/:filename", (req: Request, res: Response) => {
+app.get("/api/download/:filename", (req, res) => {
   try {
     const fileName = req.params.filename;
     res.download(`../ToShare/${fileName}`);
@@ -31,15 +25,9 @@ app.get("/api/download/:filename", (req: Request, res: Response) => {
   }
 });
 
-app.post(
-  "/api/upload",
-  upload.single("myfile"),
-  (req: Request, res: Response) => {
-    console.log(req.file);
-    res.send("uploaded");
-  },
-);
+app.post("/api/upload", upload.single("myfile"), (req, res) => {
+  console.log(req.file);
+  res.send("uploaded");
+});
 
-app.listen(8000, () =>
-  console.log(process.cwd(), `started at http://localhost:8000/`),
-);
+app.listen(8000, () => console.log(`started at http://localhost:8000/`));

@@ -1,7 +1,9 @@
+import { backendURL } from "../config";
+
 async function fetchURLs() {
   // fetch URLs for the resources to be downloaded from the api
   try {
-    const resonse = await fetch("http://localhost:8000/api/geturls");
+    const resonse = await fetch(`${backendURL}/api/geturls`);
     if (resonse.ok) {
       const data: Array<string> = await resonse.json();
       console.log("data is", data);
@@ -26,7 +28,7 @@ function populateLinksList(
 
     // then set attributes for <div> and <a>
     anchor.textContent = URL;
-    anchor.href = `http://localhost:8000/api/download/${URL}`;
+    anchor.href = `${backendURL}/api/download/${URL}`;
 
     anchorContainer.appendChild(anchor);
     linksListElement.appendChild(anchorContainer);
@@ -36,7 +38,7 @@ function populateLinksList(
 async function main() {
   const URLArray = await fetchURLs();
   if (URLArray === "error") {
-    console.log("errot during fetcjing urls");
+    console.log("errot during fetching urls");
     return;
   }
   const linksListElement = document.querySelector("main")!;

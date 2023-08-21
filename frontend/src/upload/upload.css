@@ -12,14 +12,18 @@ main {
   transform: translate(-50%);
 }
 
-fieldset{
+fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1em;
-
+  margin: 13px;
 }
-input[type="submit"]{
+legend {
+  font-size: 1.2em;
+}
+
+input[type="submit"] {
   min-width: 200px;
   padding: 1em;
   color: black;
@@ -27,7 +31,9 @@ input[type="submit"]{
   font-size: larger;
 }
 
-input[type="file"]{
+input[type="file"] {
+  width: 100%;
+  max-width: 400px;
   background-color: aqua;
   font-size: larger;
   color: black;
